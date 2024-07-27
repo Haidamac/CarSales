@@ -32,6 +32,24 @@ gem "redis", ">= 4.0.1"
 gem "sassc-rails"
 gem "bootstrap"
 
+# Use JSON Web Token (JWT) for token based authentication
+gem 'jwt', '~> 2.8', '>= 2.8.2'
+
+# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
+gem 'bcrypt', '~> 3.1.7'
+
+# authorization tool
+gem 'pundit', '~> 2.3', '>= 2.3.2'
+
+# A fast JSON:API serializer for Ruby Objects
+gem 'jsonapi-serializer', '~> 2.2'
+
+# A Ruby binding to the Ed25519 elliptic curve public-key signature system described in RFC 8032.
+gem 'ed25519', '~> 1.3'
+
+# Generate API documentation and rspec integration tests
+gem 'rswag', '~> 2.13'
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
