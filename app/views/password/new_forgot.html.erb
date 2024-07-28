@@ -1,14 +1,24 @@
-<h2>Forgot your password?</h2>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <h2 class="mb-4">Forgot your password?</h2>
 
-<%= form_with(url: forgot_password_path, local: true) do |f| %>
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email, required: true %>
+      <%= form_with(url: forgot_password_path, local: true, html: { class: 'needs-validation', novalidate: true }) do |f| %>
+        <div class="mb-3">
+          <%= f.label :email, class: 'form-label' %>
+          <%= f.email_field :email, class: 'form-control', required: true %>
+          <div class="invalid-feedback">
+            Please enter your email.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <%= f.submit "Send me reset password instructions", class: 'btn btn-primary text-white' %>
+        </div>
+      <% end %>
+
+      <p><%= link_to "Back to login", login_path %></p>
+    </div>
   </div>
+</div>
 
-  <div>
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= link_to "Back to login", login_path %>

@@ -1,11 +1,26 @@
-<h1>Edit Car Status</h1>
-<%= form_with model: [:admin, @car], local: true do |form| %>
-  <div>
-    <%= form.label :status %>
-    <%= form.select :status, Car.statuses.keys %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <h1 class="mb-4">Edit Car Status</h1>
+
+      <%= form_with model: [:admin, @car], local: true, html: { class: 'needs-validation', novalidate: true } do |form| %>
+        <div class="mb-3">
+          <%= form.label :status, class: 'form-label' %>
+          <%= form.select :status, Car.statuses.keys, {}, class: 'form-select', required: true %>
+          <div class="invalid-feedback">
+            Please select a status.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <%= form.submit 'Update Status', class: 'btn btn-primary text-white' %>
+        </div>
+      <% end %>
+
+      <p>
+        <%= link_to 'Back', admin_cars_path %>
+      </p>
+    </div>
   </div>
-  <div>
-    <%= form.submit 'Update Status' %>
-  </div>
-<% end %>
-<%= link_to 'Back', admin_cars_path %>
+</div>
+

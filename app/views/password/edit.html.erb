@@ -1,22 +1,37 @@
-<h2>Change your password</h2>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <h2 class="mb-4">Change your password</h2>
 
-<%= form_with(url: update_password_path, method: :patch, local: true) do |f| %>
-  <div>
-    <%= f.label :old_password, "Current password" %>
-    <%= f.password_field :old_password, required: true %>
-  </div>
+      <%= form_with(url: update_password_path, method: :patch, local: true, html: { class: 'needs-validation', novalidate: true }) do |f| %>
+        <div class="mb-3">
+          <%= f.label :old_password, "Current password", class: 'form-label' %>
+          <%= f.password_field :old_password, class: 'form-control', required: true %>
+          <div class="invalid-feedback">
+            Please enter your current password.
+          </div>
+        </div>
 
-  <div>
-    <%= f.label :new_password, "New password" %>
-    <%= f.password_field :new_password, required: true %>
-  </div>
+        <div class="mb-3">
+          <%= f.label :new_password, "New password", class: 'form-label' %>
+          <%= f.password_field :new_password, class: 'form-control', required: true %>
+          <div class="invalid-feedback">
+            Please enter your new password.
+          </div>
+        </div>
 
-  <div>
-    <%= f.label :confirm_password, "Confirm new password" %>
-    <%= f.password_field :confirm_password, required: true %>
-  </div>
+        <div class="mb-3">
+          <%= f.label :confirm_password, "Confirm new password", class: 'form-label' %>
+          <%= f.password_field :confirm_password, class: 'form-control', required: true %>
+          <div class="invalid-feedback">
+            Please confirm your new password.
+          </div>
+        </div>
 
-  <div>
-    <%= f.submit "Update password" %>
+        <div class="mb-3">
+          <%= f.submit "Update password", class: 'btn btn-primary text-white' %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>

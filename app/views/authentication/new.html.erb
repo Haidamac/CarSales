@@ -1,19 +1,33 @@
-<h2>Log in</h2>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <h2 class="mb-4">Log in</h2>
 
-<%= form_with(url: login_path, local: true) do |f| %>
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email, required: true %>
+      <%= form_with(url: login_path, local: true, html: { class: 'needs-validation', novalidate: true }) do |f| %>
+        <div class="mb-3">
+          <%= f.label :email, class: 'form-label' %>
+          <%= f.email_field :email, class: 'form-control', required: true %>
+          <div class="invalid-feedback">
+            Please enter your email.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :password, class: 'form-label' %>
+          <%= f.password_field :password, class: 'form-control', required: true %>
+          <div class="invalid-feedback">
+            Please enter your password.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <%= f.submit "Log in", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+
+      <p><%= link_to "Forgot your password?", forgot_password_path, class: 'link-primary' %></p>
+    </div>
   </div>
+</div>
 
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password, required: true %>
-  </div>
 
-  <div>
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<p><%= link_to "Forgot your password?", forgot_password_path %></p>

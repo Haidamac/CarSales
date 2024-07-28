@@ -1,19 +1,31 @@
-<h2>Reset your password</h2>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <h2 class="mb-4">Reset your password</h2>
 
-<%= form_with(url: reset_password_path, local: true) do |f| %>
-  <%= hidden_field_tag :token, @token %>
+      <%= form_with(url: reset_password_path, local: true, html: { class: 'needs-validation', novalidate: true }) do |f| %>
+        <%= hidden_field_tag :token, @token %>
 
-  <div>
-    <%= f.label :password, "New password" %>
-    <%= f.password_field :password, required: true %>
+        <div class="mb-3">
+          <%= f.label :password, "New password", class: 'form-label' %>
+          <%= f.password_field :password, class: 'form-control', required: true %>
+          <div class="invalid-feedback">
+            Please enter your new password.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :password_confirmation, "Confirm new password", class: 'form-label' %>
+          <%= f.password_field :password_confirmation, class: 'form-control', required: true %>
+          <div class="invalid-feedback">
+            Please confirm your new password.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <%= f.submit "Reset password", class: 'btn btn-primary text-white' %>
+        </div>
+      <% end %>
+    </div>
   </div>
-
-  <div>
-    <%= f.label :password_confirmation, "Confirm new password" %>
-    <%= f.password_field :password_confirmation, required: true %>
-  </div>
-
-  <div>
-    <%= f.submit "Reset password" %>
-  </div>
-<% end %>
+</div>
