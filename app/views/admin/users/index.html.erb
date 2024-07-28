@@ -15,9 +15,12 @@
         <td>
           <%= link_to 'Show', admin_user_path(user) %>
           <%= link_to 'Delete', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%# <%= link_to 'Delete', admin_user_path(user), onclick: "event.preventDefault(); document.getElementById('delete-form').submit();" %>
+          <%# <%= form_with url: admin_user_path(user), method: :delete, id: 'delete-form', style: 'display: none;' do %>
+          <%# <% end %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<%= link_to 'Add Admin', create_admin_admin_users_path %>
+<%= link_to 'Add Admin', new_admin_admin_users_path %>

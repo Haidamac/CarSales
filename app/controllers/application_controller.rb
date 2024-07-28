@@ -8,8 +8,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  # rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   # rescue_from ArgumentError, with: :invalid_argument
 
   private
@@ -38,13 +38,13 @@ class ApplicationController < ActionController::Base
     @current_user
   end
 
-  def user_not_authorized
-    render json: { error: 'You are not authorized to perform this action.' }, status: :unauthorized
-  end
+  # def user_not_authorized
+  #   render json: { error: 'You are not authorized to perform this action.' }, status: :unauthorized
+  # end
 
-  def record_not_found
-    render json: { error: 'record_not_found' }, status: :not_found
-  end
+  # def record_not_found
+  #   render json: { error: 'record_not_found' }, status: :not_found
+  # end
 
   # def invalid_argument
   #   render json: { error: 'invalid argument' }, status: :unprocessable_entity

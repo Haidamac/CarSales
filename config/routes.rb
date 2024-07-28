@@ -22,7 +22,10 @@ Rails.application.routes.draw do
     post '/login', to: 'authentication#create'
     delete '/logout', to: 'authentication#destroy'
     resources :users, only: [:index, :show, :destroy] do
-      post :create_admin, on: :collection
+      collection do
+        get 'new_admin', to: 'users#new_admin', as: 'new_admin'
+        post 'create_admin', to: 'users#create_admin', as: 'create_admin'
+      end
     end
     resources :cars, only: [:index, :show, :edit, :update]
 

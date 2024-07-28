@@ -54,6 +54,10 @@ class UserPolicy < ApplicationPolicy
     true
   end
 
+  def new_admin?
+    user.admin?
+  end
+
   def create_admin?
     user.admin?
   end

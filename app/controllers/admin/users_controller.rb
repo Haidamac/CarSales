@@ -14,9 +14,12 @@ module Admin
 
     def destroy
       authorize @user
+
       @user.destroy
       redirect_to admin_users_path, notice: 'User was successfully destroyed.'
     end
+
+    def new_admin; end
 
     def create_admin
       @new_admin = User.new(user_params)
