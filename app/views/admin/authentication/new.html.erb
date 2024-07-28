@@ -1,0 +1,19 @@
+<h2>Log in</h2>
+
+<%= form_with(url: login_path, local: true) do |f| %>
+  <div>
+    <%= f.label :email %>
+    <%= f.email_field :email, required: true %>
+  </div>
+
+  <div>
+    <%= f.label :password %>
+    <%= f.password_field :password, required: true %>
+  </div>
+
+  <div>
+    <%= f.submit "Log in" %>
+  </div>
+<% end %>
+
+<p><%= link_to "Forgot your password?", forgot_password_path %></p>

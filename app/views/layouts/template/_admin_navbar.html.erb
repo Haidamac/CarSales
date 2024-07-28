@@ -1,0 +1,26 @@
+<nav class='navbar nav-layout navbar-expand-lg bg-dark'>
+  <div class='container-fluid'>
+    <div class='navbar-header'>
+      <h2 class='navbar-brand'><%= link_to root_path do %>
+          Auto Sale M Admins
+      <% end %>
+      </h2>
+    </div>
+    <ul class='nav navbar-nav navbar-right'>
+      <li>
+        <div>
+          <%= link_to admin_users_path, class: 'btn btn-outline-light me-2' do%>
+            Users
+          <% end %>
+          <%= link_to admin_cars_path, class: 'btn btn-outline-light me-2' do%>
+            Cars
+          <% end %>
+          <%= link_to 'Logout', logout_path, class: 'btn btn-outline-light me-2', onclick: "event.preventDefault(); document.getElementById('logout-form').submit();" %>
+          <%= form_with url: logout_path, method: :delete, id: 'logout-form', style: 'display: none;' do %>
+            Log out
+          <% end %>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -16,8 +16,13 @@
     <div class='container-main'>
       <div class='container-fluid vh-10'>
         <div class='row vh-100'>
-          <%= render partial: 'layouts/template/navbar' %>
-          <%= render partial: 'layouts/template/flash_message' %>
+          <% if current_user && current_user.admin? %>
+            <%= render partial: 'layouts/template/admin_navbar' %>
+            <%= render partial: 'layouts/template/flash_message' %>
+          <% else %>
+            <%= render partial: 'layouts/template/navbar' %>
+            <%= render partial: 'layouts/template/flash_message' %>
+          <% end %>
           <div class='col vh-100 p-0'>
               <%= yield %>
           </div>

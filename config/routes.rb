@@ -17,7 +17,19 @@ Rails.application.routes.draw do
   get 'update_password', to: 'password#edit'
   patch 'update_password', to: 'password#update'
 
-  post 'admins/create_admin', to: 'admins#create_admin'
+  namespace :admin do
+    get '/login', to: 'authentication#new'
+    post '/login', to: 'authentication#create'
+    delete '/logout', to: 'authentication#destroy'
+    resources :users, only: [:index, :show, :destroy] do
+      post :create_admin, on: :collection
+    end
+    resources :cars, only: [:index, :show, :edit, :update]
+
+    root to: redirect('/admin/login')
+  end
+
+  # post 'admins/create_admin', to: 'admins#create_admin'
 
   resources :cars
   resources :users do
