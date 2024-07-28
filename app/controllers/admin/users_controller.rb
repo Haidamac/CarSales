@@ -1,6 +1,6 @@
 module Admin
   class UsersController < ApplicationController
-    before_action :set_user, only: [:show, :destroy]
+    before_action :set_user, only: %i[show destroy]
     before_action :authorize_policy
 
     def index

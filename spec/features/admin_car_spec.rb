@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "AdminCarManagement", type: :feature do
+RSpec.feature 'AdminCarManagement', type: :feature do
   let!(:user) { create(:user) }
   let!(:car) { create(:car, user:) }
 

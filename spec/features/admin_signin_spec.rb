@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "UserSignin", type: :feature do
+RSpec.feature 'UserSignin', type: :feature do
   let!(:user) { create(:user, :admin) }
 
   scenario 'User can sign in' do
@@ -22,6 +22,6 @@ RSpec.feature "UserSignin", type: :feature do
 
     click_button 'Log in'
 
-    expect(page).to have_content "Forgot your password?"
+    expect(page).to have_content 'Forgot your password?'
   end
 end

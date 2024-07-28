@@ -21,13 +21,13 @@ Rails.application.routes.draw do
     get '/login', to: 'authentication#new'
     post '/login', to: 'authentication#create'
     delete '/logout', to: 'authentication#destroy'
-    resources :users, only: [:index, :show, :destroy] do
+    resources :users, only: %i[index show destroy] do
       collection do
         get 'new_admin', to: 'users#new_admin', as: 'new_admin'
         post 'create_admin', to: 'users#create_admin', as: 'create_admin'
       end
     end
-    resources :cars, only: [:index, :show, :edit, :update]
+    resources :cars, only: %i[index show edit update]
 
     root to: redirect('/admin/login')
   end

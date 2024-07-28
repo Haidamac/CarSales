@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "CarManagement", type: :feature do
+RSpec.feature 'CarManagement', type: :feature do
   let!(:user) { create(:user) }
   let!(:car) { create(:car, user:) }
 
@@ -19,7 +19,7 @@ RSpec.feature "CarManagement", type: :feature do
     fill_in 'Body', with: 'Sedan'
     fill_in 'Mileage', with: 5000
     fill_in 'Color', with: 'White'
-    fill_in 'Price', with: 25000
+    fill_in 'Price', with: 25_000
     fill_in 'Fuel', with: 'Gasoline'
     fill_in 'Year', with: 2022
     fill_in 'Volume', with: 2.0

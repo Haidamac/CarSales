@@ -81,4 +81,3 @@ class PasswordController < ApplicationController
     end
   end
 end
-

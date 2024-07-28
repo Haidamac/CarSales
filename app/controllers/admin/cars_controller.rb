@@ -1,6 +1,6 @@
 module Admin
   class CarsController < ApplicationController
-    before_action :set_car, only: [:show, :edit, :update]
+    before_action :set_car, only: %i[show edit update]
     before_action :authorize_policy
 
     def index

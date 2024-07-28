@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "UserRegistrations", type: :feature do
+RSpec.feature 'UserRegistrations', type: :feature do
   scenario 'User can sign up' do
     visit new_user_path
 
@@ -24,6 +24,6 @@ RSpec.feature "UserRegistrations", type: :feature do
 
     click_button 'Sign up'
 
-    expect(page).to have_content "Sign up"
+    expect(page).to have_content 'Sign up'
   end
 end
