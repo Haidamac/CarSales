@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-  rescue_from ArgumentError, with: :invalid_argument
+  # rescue_from ArgumentError, with: :invalid_argument
 
   private
 
@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
     render json: { error: 'record_not_found' }, status: :not_found
   end
 
-  def invalid_argument
-    render json: { error: 'invalid argument' }, status: :unprocessable_entity
-  end
+  # def invalid_argument
+  #   render json: { error: 'invalid argument' }, status: :unprocessable_entity
+  # end
 end

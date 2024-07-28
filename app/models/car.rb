@@ -1,6 +1,9 @@
 class Car < ApplicationRecord
   belongs_to :user
-  has_many_attached :images
+  has_many_attached :images do |attachable|
+    attachable.variant :thumb, resize_to_limit: [300, 200]
+    attachable.variant :main, resize_to_limit: [900, 600]
+  end
 
   enum status: %i[pending rejected approved]
 
