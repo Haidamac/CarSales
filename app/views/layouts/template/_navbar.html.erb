@@ -29,16 +29,18 @@
               </svg>
               My Cars
             <% end %>
-            <%= link_to edit_user_registration_path, class: 'btn btn-outline-light me-2' do %>
+            <%= link_to user_path(current_user.id), class: 'btn btn-outline-light me-2' do %>
               <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-person-fill' viewBox='0 0 16 16'>
                 <path d='M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z'/>
               </svg>
               My account
             <% end %>
-            <%= link_to custom_destroy_user_session_path, method: :delete, class: 'btn btn-outline-light me-2' do %>
-              <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-door-open-fill' viewBox='0 0 16 16'>
+            <%# <%= link_to logout_path, method: :delete, class: 'btn btn-outline-light me-2' do %>
+            <%= link_to 'Logout', logout_path, class: 'btn btn-outline-light me-2', onclick: "event.preventDefault(); document.getElementById('logout-form').submit();" %>
+            <%= form_with url: logout_path, method: :delete, id: 'logout-form', style: 'display: none;' do %>
+              <%# <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-door-open-fill' viewBox='0 0 16 16'>
                 <path d='M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z'/>
-              </svg>
+              </svg> %>
               Log out
             <% end %>
           </div>

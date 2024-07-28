@@ -25,6 +25,7 @@ class AuthenticationController < ApplicationController
 
   def destroy
     cookies.delete(:jwt)
+    session[:user_id] = nil
     redirect_to root_path, notice: 'Logged out successfully'
   end
 end

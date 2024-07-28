@@ -7,11 +7,6 @@
   </div>
 
   <div>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-  </div>
-
-  <div>
     <%= f.label :phone %>
     <%= f.telephone_field :phone %>
   </div>
@@ -22,4 +17,4 @@
 <% end %>
 
 <%= link_to "Change password", update_password_path %>
-<%= link_to "Back to profile", user_path(@user) %>
+<%= link_to "Back to profile", user_path(current_user) %>

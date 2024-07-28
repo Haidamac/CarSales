@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_request, only: [:create]
   before_action :authorize_policy
   before_action :set_user, only: [:show]
-  before_action :edit_user, only: %i[update destroy]
+  before_action :edit_user, only: %i[edit update destroy]
 
   # GET api/v1/users
   def index
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    authorize @user
+    # authorize @user
   end
 
   # PUT/PATCH api/v1/users/{id}
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     authorize @user
 
     respond_to do |format|
-      if @user.update(car_params)
+      if @user.update(edit_user_params)
         format.html { redirect_to user_url(@user), notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
