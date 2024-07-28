@@ -1,0 +1,14 @@
+<h2>Forgot your password?</h2>
+
+<%= form_with(url: forgot_password_path, local: true) do |f| %>
+  <div>
+    <%= f.label :email %>
+    <%= f.email_field :email, required: true %>
+  </div>
+
+  <div>
+    <%= f.submit "Send me reset password instructions" %>
+  </div>
+<% end %>
+
+<%= link_to "Back to login", login_path %>

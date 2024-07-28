@@ -1,16 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>CarSales</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Sale M</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag "application", media: 'all', "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class='container-main'>
+      <div class='container-fluid vh-10'>
+        <div class='row vh-100'>
+          <%= render partial: 'layouts/template/navbar' %>
+          <%= render partial: 'layouts/template/flash_message' %>
+          <div class='col vh-100 p-0'>
+              <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

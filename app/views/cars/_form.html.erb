@@ -1,0 +1,57 @@
+<%= form_with(model: @car, local: true, html: { multipart: true }) do |form| %>
+  <div class="form-group">
+    <%= form.label :brand %>
+    <%= form.text_field :brand, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :car_model %>
+    <%= form.text_field :car_model, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :body %>
+    <%= form.text_field :body, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :mileage %>
+    <%= form.number_field :mileage, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :color %>
+    <%= form.text_field :color, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :price %>
+    <%= form.number_field :price, step: '0.01', class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :fuel %>
+    <%= form.text_field :fuel, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :year %>
+    <%= form.number_field :year, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :volume %>
+    <%= form.number_field :volume, step: '0.01', class: 'form-control' %>
+  </div>
+
+  <% 5.times do %>
+    <div class="form-group">
+      <%= form.label :images, 'Upload Images' %>
+      <%= form.file_field :images, multiple: true, accept: 'image/*', class: 'form-control' %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.submit 'Save', class: 'btn btn-primary' %>
+  </div>
+<% end %>

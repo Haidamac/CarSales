@@ -1,12 +1,9 @@
-class ApplicationController < ActionController::Base
+class Api::BaseController < ActionController::API
   include JsonWebToken
   include Authenticate
   include Pundit::Authorization
 
-  protect_from_forgery with: :exception
   before_action :authenticate_request
-
-  helper_method :current_user
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
@@ -15,23 +12,15 @@ class ApplicationController < ActionController::Base
   private
 
   def authenticate_request
-    token = cookies[:jwt]
-    if token
-      begin
-        decoded = jwt_decode(token)
-        @current_user = User.find(decoded[:user_id])
-      rescue JWT::DecodeError
-        redirect_to login_path, alert: 'Invalid token. Please log in again.'
-      rescue ActiveRecord::RecordNotFound
-        redirect_to login_path, alert: 'User not found. Please log in again.'
-      end
-    else
-      redirect_to login_path, alert: 'Please log in to access this page.'
-    end
-  end
+    header = request.headers['Authorization']
 
-  def current_user
-    @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+    if header.present? && header.split(' ').first == 'Bearer'
+      token = header.split(' ').last
+      decoded = jwt_decode(token)
+      @current_user = User.find(decoded[:user_id])
+    else
+      render json: { error: 'Unauthorized' }, status: :unauthorized
+    end
   end
 
   def pundit_user

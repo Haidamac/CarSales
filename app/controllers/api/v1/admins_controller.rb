@@ -1,4 +1,4 @@
-class Api::V1::AdminsController < ApplicationController
+class Api::V1::AdminsController < Api::BaseController
   before_action :authorize_policy
 
   def create_admin

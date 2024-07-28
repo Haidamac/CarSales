@@ -1,4 +1,4 @@
-class Api::V1::AuthenticationController < ApplicationController
+class Api::V1::AuthenticationController < Api::BaseController
   skip_before_action :authenticate_request
   before_action :current_user, except: :login
 

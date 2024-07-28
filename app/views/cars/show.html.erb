@@ -1,0 +1,99 @@
+<div class='card mb-3 mx-auto' style='max-width: 1200px; margin: auto;'>
+  <div class='row g-0'>
+    <div class='col-md-8'>
+      <% if @car.images.attached? %>
+        <div class="carousel">
+          <div class="carousel-images">
+            <% @car.images.each_with_index do |image, index| %>
+              <div class="carousel-image <%= 'active' if index == 0 %>">
+                <%= image_tag image.variant(:main), class: 'img-fluid', alt: @car.brand %>
+              </div>
+            <% end %>
+          </div>
+          <button class="prev" onclick="showPrevImage()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+              <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+            </svg>
+          </button>
+          <button class="next" onclick="showNextImage()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+              <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+            </svg>
+          </button>
+        </div>
+      <% else %>
+        <%= image_tag("no_image.png", class: 'card-img-top', alt: 'No Image') %>
+      <% end %>
+    </div>
+    <div class='col-md-4'>
+      <div class='card-body'>
+        <h3 class='text-center'><%= @car.brand %> <%= @car.car_model %></h3>
+        <p class='text-left'>Car Body: <%= @car.body %></p>
+        <p class='text-left'>Mileage: <%= @car.mileage %></p>
+        <p class='text-left'>Color: <%= @car.color %></p>
+        <p class='text-left'>Fuel: <%= @car.fuel %></p>
+        <p class='text-left'>Year: <%= @car.year %></p>
+        <p class='text-left'>Volume: <%= @car.volume %></p>
+        <p class='card-text'>Seller: <%= @car.user.name %></p>
+        <p class='card-text'>
+          <h4 style='color:#d63384; text-align:right'>Price: <%= number_to_currency(@car.price) %></h4>
+        </p>
+        <div class="phone-call-button">
+          <%= link_to "tel:#{@car.user.phone}" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+            </svg>
+            Call
+          <% end %>
+          <%= link_to "tel:#{@car.user.email}" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+              <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
+            </svg>
+            Email
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if @current_user %>
+  <% if @car.user_id == current_user.id %>
+    <div class="text-center mt-3">
+      <%= link_to "Edit this car", edit_car_path(@car) %> |
+      <%= link_to "Back to cars", cars_path %>
+    </div>
+  <% else %>
+  <div class="text-center mt-3">
+      <%= link_to "Back to cars", cars_path %>
+    </div>
+  <% end %>
+<% end %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    let currentIndex = 0;
+    const images = document.querySelectorAll('.carousel-image');
+    const totalImages = images.length;
+
+    function showImage(index) {
+      images.forEach((image, i) => {
+        image.classList.toggle('active', i === index);
+      });
+    }
+
+    window.showPrevImage = function() {
+      currentIndex = (currentIndex === 0) ? totalImages - 1 : currentIndex - 1;
+      showImage(currentIndex);
+    };
+
+    window.showNextImage = function() {
+      currentIndex = (currentIndex === totalImages - 1) ? 0 : currentIndex + 1;
+      showImage(currentIndex);
+    };
+
+    // Show the first image initially
+    showImage(currentIndex);
+  });
+</script>
+

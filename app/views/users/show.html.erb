@@ -1,0 +1,13 @@
+<h2>User Profile</h2>
+
+<p><strong>Name:</strong> <%= @user.name %></p>
+<p><strong>Email:</strong> <%= @user.email %></p>
+<p><strong>Phone:</strong> <%= @user.phone %></p>
+
+<%= link_to "Edit Profile", edit_user_path(@user) %>
+<%= link_to "Change Password", update_password_path %>
+<%= link_to "Back to Home", root_path %>
+
+<% if policy(@user).destroy? %>
+  <%= button_to "Delete Account", user_path(@user), method: :delete, data: { confirm: "Are you sure you want to delete your account? This action cannot be undone." } %>
+<% end %>

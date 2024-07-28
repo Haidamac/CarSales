@@ -1,0 +1,16 @@
+<div class="col-auto">
+  <div class='card p-0 mt-3 mx-auto shadow-sm'>
+    <%= link_to car do %>
+    <% if car.images.attached? %>
+      <%= image_tag car.images.first.variant(:thumb), width: "300", height: "200", alt: car.brand %>
+    <% else %>
+      <%= image_tag("no_image.png", width: "300", height: "200", alt: 'No image') %>
+    <% end %>
+    <div class='card-body'>
+      <h5 class='card-title text-center'><%= car.brand %>  <%= car.car_model %></h5>
+      <h6 class='card-subtitle mb-2 text-body-secondary'><%= car.year %></h6>
+      <p class='card-price mt-auto text-end'><%= number_to_currency(car.price) %></p>
+    <% end %>
+    </div>
+  </div>
+</div>

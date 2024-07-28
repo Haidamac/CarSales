@@ -1,19 +1,30 @@
 class AuthenticationController < ApplicationController
   skip_before_action :authenticate_request
-  before_action :current_user, except: :login
+  before_action :current_user, except: %i[create new]
 
   def new; end
 
-  # Post api/v1/auth/login
-  def login
-    @user = User.find_by_email(params[:email])
-    if @user&.authenticate(params[:password])
-       token = jwt_encode(user_id: @user.id)
-       response.set_header('Authorization', "Bearer #{token}")
-       redirect_to root_path
+  def create
+    user = User.find_by(email: params[:email])
+    if user&.authenticate(params[:password])
+      token = jwt_encode(user_id: user.id)
+      cookies[:jwt] = {
+        value: token,
+        httponly: true,
+        secure: Rails.env.production?,
+        expires: 7.days.from_now
+      }
+      session[:user_id] = user.id
+      redirect_to root_path, notice: 'Logged in successfully'
+      return
     else
-      flash.now[:alert] = 'Inccorect email or password'
-      render :new, status: :unauthorized
+      flash.now[:alert] = 'Invalid email or password'
+      render :new
     end
+  end
+
+  def destroy
+    cookies.delete(:jwt)
+    redirect_to root_path, notice: 'Logged out successfully'
   end
 end

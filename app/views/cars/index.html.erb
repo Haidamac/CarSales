@@ -1,0 +1,14 @@
+<div id='viewport'>
+  <!-- Content -->
+  <div id='content'>
+    <div class='container-fluid'>
+      <div id="cars" class="row cars">
+        <div class='row g-5 justify-content-center align-items-center vh-10 flex-wrap'>
+          <% @cars.each do |car| %>
+            <%= render partial: 'cars/car', locals: { car: car } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

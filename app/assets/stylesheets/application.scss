@@ -1,1 +1,147 @@
 @import "bootstrap";
+@import "./cars/cars";
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+
+.nav-layout {
+  width: -webkit-fill-available;
+  z-index: 10000;
+  position: static;
+}
+
+.category {
+  margin-top: 5px;
+}
+
+.row {
+  margin: 3px;
+}
+
+.actions, .field, .login {
+  padding-left: 15px;
+}
+
+a:link, a:visited  {
+  color: slategrey;
+  text-decoration: none;
+}
+
+a:hover  {
+  color: darkred;
+}
+
+a:active  {
+  color: #F00FFF;
+}
+
+#cardnumber {
+  margin: 10px;
+  max-width: 162px;
+}
+
+#expirationdate {
+  margin: 10px;
+}
+
+#expirationmonth {
+  margin-right: 1px;
+  margin-bottom: 15px;
+}
+
+#expirationyear {
+  margin-right: 35px;
+  margin-bottom: 15px;
+}
+
+#securitycode {
+  margin-bottom: 15px;
+  max-width: 40px;
+}
+
+.cart_quantity {
+  color: red;
+}
+
+.quantity {
+  margin: 5px 10px;
+}
+
+.btn-danger{
+  background-color: darkred !important;
+}
+
+.btn-danger:hover{
+  background-color: red !important;
+}
+
+.btn-success{
+  color: white !important;
+}
+
+.btn-success:hover{
+  background-color: limegreen !important;
+}
+
+.carousel {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.carousel-images {
+  position: relative;
+  width: 100%;
+}
+
+.carousel-image {
+  display: none;
+}
+
+.carousel-image img {
+  width: 100%;
+  height: auto;
+}
+
+.carousel-image.active {
+  display: block;
+}
+
+.carousel button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.carousel button.prev {
+  left: 10px;
+}
+
+.carousel button.next {
+  right: 10px;
+}
+
+.phone-call-button svg {
+  margin-right: 5px;
+  margin-left: 25px;
+}
+
+.container {
+  display: grid;
+  place-items: center;
+  min-height: 30vh;
+}
+
+.container-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

@@ -1,4 +1,4 @@
-class Api::V1::CarsController < ApplicationController
+class Api::V1::CarsController < Api::BaseController
   include Rails.application.routes.url_helpers
   include CarableUtilities
 
@@ -93,7 +93,7 @@ class Api::V1::CarsController < ApplicationController
   end
 
   def car_params
-    params.require(:car).permit(:brand, :car_model, :body, :mileage, :color, :price, :fuel, :year, :volume, images: [])
+    params.permit(:brand, :car_model, :body, :mileage, :color, :price, :fuel, :year, :volume, images: [])
   end
 
   def edit_car_params

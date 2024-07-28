@@ -1,0 +1,22 @@
+<h2>Change your password</h2>
+
+<%= form_with(url: update_password_path, method: :patch, local: true) do |f| %>
+  <div>
+    <%= f.label :old_password, "Current password" %>
+    <%= f.password_field :old_password, required: true %>
+  </div>
+
+  <div>
+    <%= f.label :new_password, "New password" %>
+    <%= f.password_field :new_password, required: true %>
+  </div>
+
+  <div>
+    <%= f.label :confirm_password, "Confirm new password" %>
+    <%= f.password_field :confirm_password, required: true %>
+  </div>
+
+  <div>
+    <%= f.submit "Update password" %>
+  </div>
+<% end %>

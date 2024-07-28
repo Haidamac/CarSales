@@ -1,4 +1,4 @@
-class Api::V1::PasswordController < ApplicationController
+class Api::V1::PasswordController < Api::BaseController
   skip_before_action :authenticate_request, except: :update
 
   def forgot
