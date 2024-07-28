@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_request, only: [:create]
+  skip_before_action :authenticate_request, only: %i[new create]
   before_action :authorize_policy
   before_action :set_user, only: [:show]
   before_action :edit_user, only: %i[edit update destroy]
@@ -21,21 +21,20 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new(user_params)
-
-    authorize @user
+    @user = User.new
   end
 
   # POST api/v1/users
   def create
-    authorize @user
-
-    if @user.save
-      format.html { redirect_to user_url(@user), notice: 'User was successfully created.' }
-      format.json { render :show, status: :created, location: @user }
-    else
-      format.html { render :new, status: :unprocessable_entity }
-      format.json { render json: @user.errors, status: :unprocessable_entity }
+    @user = User.new(user_params)
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to user_url(@user), notice: 'User was successfully created.' }
+        format.json { render :show, status: :created, location: @user }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -80,11 +79,11 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.permit(:name, :email, :password, :phone)
+    params.require(:user).permit(:name, :email, :password, :phone)
   end
 
   def edit_user_params
-    params.permit(policy(@user).permitted_attributes)
+    params.require(:user).permit(policy(@user).permitted_attributes)
   end
 
   def authorize_policy
